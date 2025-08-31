@@ -1,0 +1,24 @@
+<!-- Static copy from tinkerbell-frontend/landing.html tailored for GitHub Pages. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tinkerbell - Customer Acquisition Done Like Magic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Minimal shell: we rely on inline CSS from original landing for a quick deploy */
+    body { font-family: 'Inter', sans-serif; margin: 0; }
+    .center { display: grid; place-items: center; min-height: 100vh; padding: 2rem; }
+    .cta { display: inline-block; background: #22c55e; color: #fff; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <img src="tinkerbell-logo.png" alt="Tinkerbell" style="height:80px; margin-bottom: 16px;" />
+    <h1 style="margin: 0 0 12px;">Tinkerbell</h1>
+    <p style="max-width: 680px; text-align: center; color: #334155; margin-bottom: 24px;">AI marketing assistant that generates customer personas, campaign strategy and social posts with images.</p>
+    <a class="cta" href="#" onclick="sessionStorage.setItem('fromLanding','1'); location.href='index.html?app=1'">Try the app</a>
+  </div>
+</body>
+</html>
