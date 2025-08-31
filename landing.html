@@ -1,24 +1,160 @@
-<!-- Static copy from tinkerbell-frontend/landing.html tailored for GitHub Pages. -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tinkerbell - Customer Acquisition Done Like Magic</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Minimal shell: we rely on inline CSS from original landing for a quick deploy */
-    body { font-family: 'Inter', sans-serif; margin: 0; }
-    .center { display: grid; place-items: center; min-height: 100vh; padding: 2rem; }
-    .cta { display: inline-block; background: #22c55e; color: #fff; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; }
+     :root {
+      --primary-50: #f0fdf4;
+      --primary-100: #dcfce7;
+      --primary-200: #bbf7d0;
+      --primary-300: #86efac;
+      --primary-400: #4ade80;
+      --primary-500: #22c55e;
+      --primary-600: #16a34a;
+      --primary-700: #15803d;
+      --primary-800: #166534;
+      --primary-900: #14532d;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --success-500: #22c55e;
+    }
+        
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+        
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background-color: var(--primary-50);
+    }
+        
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    /* Navigation */
+        
+    .navbar {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+        
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+        
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+        
+    .nav-brand h1 {
+      color: var(--primary-500);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+        
+    .nav-brand .logo {
+      height: 68px;
+      width: auto;
+    }
+        
+    .beta-badge {
+      background: var(--gray-100);
+      color: var(--gray-600);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+        
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+        
+    .nav-links a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+        
+    .nav-links a:hover {
+      color: var(--primary-500);
+    }
+    /* Hero */
+        
+    .hero {
+      padding: 8rem 0 6rem;
+      background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+    }
+        
+    .hero-text { text-align:center; }
+    .hero-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+    .gradient-text { background: linear-gradient(135deg, var(--primary-500), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-description { color: var(--gray-600); margin-bottom: 2rem; }
+    .hero-actions { display:flex; justify-content:center; gap:1rem; }
+    .btn { display:inline-block; padding:.75rem 1.5rem; border-radius:.5rem; text-decoration:none; font-weight:600; }
+    .btn-primary { background: var(--primary-500); color:#fff; }
+
   </style>
 </head>
+
 <body>
-  <div class="center">
-    <img src="tinkerbell-logo.png" alt="Tinkerbell" style="height:80px; margin-bottom: 16px;" />
-    <h1 style="margin: 0 0 12px;">Tinkerbell</h1>
-    <p style="max-width: 680px; text-align: center; color: #334155; margin-bottom: 24px;">AI marketing assistant that generates customer personas, campaign strategy and social posts with images.</p>
-    <a class="cta" href="#" onclick="sessionStorage.setItem('fromLanding','1'); location.href='index.html?app=1'">Try the app</a>
-  </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <img src="tinkerbell-frontend/tinkerbell-logo.svg" alt="Tinkerbell" class="logo">
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Tinkerbell
+        </h1>
+        <p class="hero-description">
+          AI marketing assistant that generates customer personas, campaign strategy and social posts with images.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" onclick="sessionStorage.setItem('fromLanding','1'); location.href='index.html?app=1'">Try the app</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
