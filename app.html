@@ -3,326 +3,791 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinkerbell App</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Tinkerbell - Autonomous Marketing Platform</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https: http://localhost:3000; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="tinkerbell-frontend/app-styles.css">
 </head>
 <body>
-  <!-- Header Navigation -->
+  <!-- Progress Header -->
   <header class="app-header">
     <div class="container">
       <div class="brand">
-        <img src="tinkerbell-frontend/tinkerbell-logo.png" alt="Tinkerbell" class="logo">
+        <img src="tinkerbell-frontend/tinkerbell-logo.png" alt="Tinkerbell" height="32">
+        <span class="brand-name">Tinkerbell</span>
+      </div>
+      <div class="progress-indicator">
+        <div class="step active" data-step="1">
+          <div class="step-number">1</div>
+          <span class="step-label">Business Context</span>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-number">2</div>
+          <span class="step-label">Goal Selection</span>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-number">3</div>
+          <span class="step-label">Meta Pixel</span>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-number">4</div>
+          <span class="step-label">Strategy Review</span>
+        </div>
+        <div class="step" data-step="5">
+          <div class="step-number">5</div>
+          <span class="step-label">Campaign Launch</span>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Page 1: Business Setup -->
-  <div id="page-onboarding" class="page active">
-    <div class="container">
-      <div class="onboarding-wrapper">
-        <div class="onboarding-content">
-          <div class="step-indicator">
-            <span class="step active">1</span>
-            <span class="step">2</span>
-            <span class="step">3</span>
-          </div>
-          <div class="page-header">
-            <h2>Tell us about your business</h2>
-            <p>We'll use this information to create personalized marketing campaigns that work for your specific audience.</p>
-          </div>
-          <form id="onboarding-form" class="onboarding-form">
-            <div class="form-section">
-              <div class="form-group">
-                <label for="businessName">Business name</label>
-                <input type="text" id="businessName" name="businessName" placeholder="e.g., Martha's Flower Shop" required>
-              </div>
-              <div class="form-group">
-                <label for="businessDescription">What does your business do?</label>
-                <textarea id="businessDescription" name="businessDescription" placeholder="e.g., Local florist in Chisinau specializing in unique wedding arrangements and special event flowers" required></textarea>
-              </div>
-              <div class="form-group">
-                <label for="targetCustomers">Who are your ideal customers?</label>
-                <textarea id="targetCustomers" name="targetCustomers" placeholder="e.g., Brides-to-be, event planners, people looking for special gifts"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="businessGoals">What are your main business goals?</label>
-                <textarea id="businessGoals" name="businessGoals" placeholder="e.g., Attract more clients for large events, increase online visibility"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="websiteUrl">Website or Facebook page <span class="optional">(optional)</span></label>
-                <input type="url" id="websiteUrl" name="websiteUrl" placeholder="https://www.facebook.com/marthasflowers">
-                <small>We'll analyze your content to better understand your business</small>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Continue</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Page 2: Customer Personas -->
-  <div id="page-personas" class="page">
-    <div class="container">
-      <div class="personas-wrapper">
-        <div class="step-indicator">
-          <span class="step completed">1</span>
-          <span class="step active">2</span>
-          <span class="step">3</span>
-        </div>
+  <!-- Main Application Content -->
+  <main class="app-main">
+    <!-- Step 1: Business Context Collection -->
+    <section id="page-business-context" class="page active">
+      <div class="container">
         <div class="page-header">
-          <h2>Review your customer personas</h2>
-          <p>We've created detailed profiles of your ideal customers. You can edit them if something doesn't look right.</p>
+          <h1>Tell us about your business</h1>
+          <p>Help us understand your business context to generate the perfect marketing strategy</p>
         </div>
-        <div id="loading-log" class="loading-section">
-          <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h3>Creating your marketing strategy...</h3>
-            <div class="progress-log">
-              <div class="log-item completed"><span class="checkmark">✓</span><span>Analyzing your business context...</span></div>
-              <div class="log-item completed"><span class="checkmark">✓</span><span>Identifying target audience and creating personas...</span></div>
-              <div class="log-item completed"><span class="checkmark">✓</span><span>Generating personalized campaign ideas...</span></div>
-              <div class="log-item completed"><span class="checkmark">✓</span><span>Creating AI-powered posts and ads...</span></div>
-              <div class="log-item completed"><span class="checkmark">✓</span><span>Evaluating lead potential...</span></div>
+
+        <form id="business-context-form" class="business-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="businessName">Business Name *</label>
+              <input type="text" id="businessName" name="businessName" required 
+                   placeholder="e.g., TechFlow Solutions">
             </div>
-          </div>
-        </div>
-        <div id="personas-editor" class="personas-section">
-          <div id="personas-container"></div>
-          <div class="media-upload-section">
-            <h3>Add campaign images</h3>
-            <p>Upload images you'd like to use in your posts, or let our AI generate new ones for you.</p>
-            <div class="upload-area" id="upload-area">
-              <div class="upload-content">
-                <div class="upload-icon">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
-                  </svg>
-                </div>
-                <h4>Drag and drop images here</h4>
-                <p>or <span class="upload-link">click to browse</span></p>
-                <small>JPG, PNG, GIF up to 10MB per image</small>
+
+            <div class="form-group">
+              <label for="websiteUrl">Website URL</label>
+              <input type="url" id="websiteUrl" name="websiteUrl" 
+                   placeholder="https://www.example.com">
+            </div>
+
+            <div class="form-group full-width">
+              <label for="productDescription">Product/Service Description *</label>
+              <textarea id="productDescription" name="productDescription" required 
+                    placeholder="Describe what your business does, your main products or services..."
+                    rows="3"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="painPoints">Customer Pain Points *</label>
+              <textarea id="painPoints" name="painPoints" required 
+                    placeholder="What problems do your customers face? What challenges do you solve?"
+                    rows="3"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="valueProposition">Value Proposition *</label>
+              <textarea id="valueProposition" name="valueProposition" required 
+                    placeholder="What makes you unique? Why should customers choose you?"
+                    rows="3"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="marketSignals">Market Signals & Traction</label>
+              <textarea id="marketSignals" name="marketSignals" 
+                    placeholder="Any metrics, customer feedback, or market validation you have..."
+                    rows="2"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Pitch Deck (Optional)</label>
+              <div class="file-upload-area" id="pitchDeckUpload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Click to upload your pitch deck (PDF)</span>
+                <small>This helps us understand your business better</small>
               </div>
-              <input type="file" id="image-upload" multiple accept="image/*" style="display: none;" />
-            </div>
-            <div id="uploaded-images-preview" class="uploaded-images"></div>
-            <div class="checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="generate-missing-images" checked />
-                <span class="checkmark"></span>
-                <span>Generate images automatically for posts without visuals</span>
-              </label>
+              <input type="file" id="pitchDeck" name="pitchDeck" accept=".pdf" style="display: none;">
             </div>
           </div>
-          <div class="form-actions">
-            <button id="confirm-personas" class="btn btn-primary">Continue to campaigns</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Page 3: Campaign Dashboard -->
-  <div id="page-campaign" class="page">
-    <div class="container">
-      <div class="campaign-wrapper">
-        <div class="step-indicator">
-          <span class="step completed">1</span>
-          <span class="step completed">2</span>
-          <span class="step active">3</span>
-        </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Continue to Goal Selection
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Step 2: Goal Selection -->
+    <section id="page-goal-selection" class="page">
+      <div class="container">
         <div class="page-header">
-          <h2>Your marketing campaigns</h2>
-          <p>Here's your AI-generated marketing strategy and social media posts ready to launch.</p>
+          <h1>What's your primary marketing goal?</h1>
+          <p>Choose your main objective to customize the strategy</p>
         </div>
-        <div class="campaign-content">
-          <div id="strategy-section" class="strategy-card">
-            <h3>Marketing strategy</h3>
-            <div id="marketing-strategy" class="strategy-content">
-              <div class="loading-placeholder">Loading strategy...</div>
+
+        <div class="goals-grid">
+          <div class="goal-card" data-goal="lead-generation">
+            <div class="goal-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Lead Generation</h3>
+            <p>Generate high-quality leads and build your sales pipeline</p>
+            <div class="goal-features">
+              <span>• Lead capture campaigns</span>
+              <span>• Nurturing sequences</span>
+              <span>• Conversion optimization</span>
             </div>
           </div>
-          <div id="posts-section" class="posts-section">
-            <div class="section-header">
-              <h3>Social media posts</h3>
-              <span class="post-count" id="posts-count">0 posts ready</span>
+
+          <div class="goal-card" data-goal="brand-awareness">
+            <div class="goal-icon">
+              <i class="fas fa-bullhorn"></i>
             </div>
-            <div id="posts-container" class="posts-grid"></div>
-          </div>
-          <div id="image-processing-results" class="results-section" style="display:none;"></div>
-          <div id="auto-posting-status" class="status-section" style="display:none;"></div>
-          <div class="campaign-metrics">
-            <div class="metrics-grid">
-              <div class="metric-card"><div class="metric-label">Suggested budget</div><div class="metric-value">$20</div></div>
-              <div class="metric-card"><div class="metric-label">Estimated qualified leads</div><div class="metric-value">5-8</div></div>
-              <div class="metric-card"><div class="metric-label">Estimated cost per lead</div><div class="metric-value">$0.95-2.45</div></div>
+            <h3>Brand Awareness</h3>
+            <p>Increase visibility and build brand recognition in your market</p>
+            <div class="goal-features">
+              <span>• Brand storytelling</span>
+              <span>• Content marketing</span>
+              <span>• Social media presence</span>
             </div>
           </div>
-          <div class="form-actions">
-            <button id="schedule-campaign" class="btn btn-primary btn-large">Launch campaigns</button>
+
+          <div class="goal-card" data-goal="customer-acquisition">
+            <div class="goal-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Customer Acquisition</h3>
+            <p>Drive sales and acquire new paying customers</p>
+            <div class="goal-features">
+              <span>• Conversion campaigns</span>
+              <span>• Sales funnels</span>
+              <span>• Performance tracking</span>
+            </div>
+          </div>
+
+          <div class="goal-card" data-goal="market-expansion">
+            <div class="goal-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3>Market Expansion</h3>
+            <p>Enter new markets and reach new customer segments</p>
+            <div class="goal-features">
+              <span>• Market research</span>
+              <span>• Localization</span>
+              <span>• Growth strategies</span>
+            </div>
+          </div>
+
+          <div class="goal-card" data-goal="retention-engagement">
+            <div class="goal-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Customer Retention</h3>
+            <p>Increase customer lifetime value and engagement</p>
+            <div class="goal-features">
+              <span>• Loyalty programs</span>
+              <span>• Email campaigns</span>
+              <span>• Community building</span>
+            </div>
+          </div>
+
+          <div class="goal-card" data-goal="thought-leadership">
+            <div class="goal-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Thought Leadership</h3>
+            <p>Establish authority and build industry credibility</p>
+            <div class="goal-features">
+              <span>• Content strategy</span>
+              <span>• Expert positioning</span>
+              <span>• Industry insights</span>
+            </div>
           </div>
         </div>
+
+        <div class="form-actions">
+          <button id="continue-to-pixel" class="btn btn-primary" disabled>
+            Continue to Meta Pixel Setup
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Meta Pixel Integration -->
+    <section id="page-meta-pixel" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Connect Your Marketing Platforms</h1>
+          <p>Link your advertising accounts for better campaign targeting and multi-platform automation</p>
+        </div>
+
+        <!-- Meta Pixel Priority Section -->
+        <div class="meta-pixel-section">
+          <div class="pixel-card featured">
+            <div class="pixel-icon">
+              <i class="fab fa-facebook"></i>
+            </div>
+            <div class="pixel-info">
+              <h3>Meta Pixel Setup (Recommended)</h3>
+              <p>Connect your Facebook Pixel for enhanced tracking and targeting</p>
+              <div class="pixel-input-group">
+                <input 
+                  type="text" 
+                  id="meta-pixel-id" 
+                  placeholder="Enter your Meta Pixel ID (e.g., 123456789012345)"
+                  class="pixel-input"
+                />
+                <button id="verify-pixel" class="btn btn-outline">
+                  <i class="fas fa-check"></i>
+                  Verify
+                </button>
+                <button id="auto-install-pixel" class="btn btn-primary">
+                  <i class="fas fa-magic"></i>
+                  Auto Install
+                </button>
+              </div>
+              <div class="pixel-status" id="pixel-status"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Platforms Section -->
+        <div class="other-platforms-section">
+          <div class="section-header">
+            <h4>Connect Additional Platforms</h4>
+            <button id="show-all-platforms" class="btn btn-outline">
+              <i class="fas fa-plus"></i>
+              Connect Other Accounts
+            </button>
+          </div>
+                    
+          <div id="all-platforms-list" class="platforms-grid hidden">
+            <div class="platform-card" data-platform="linkedin">
+              <div class="platform-icon">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <div class="platform-info">
+                <h3>LinkedIn</h3>
+              </div>
+              <div class="platform-status">
+                <button class="btn btn-outline connect-platform" data-platform="linkedin">
+                  Connect
+                </button>
+              </div>
+            </div>
+
+            <div class="platform-card" data-platform="google">
+              <div class="platform-icon">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="platform-info">
+                <h3>Google Ads</h3>
+              </div>
+              <div class="platform-status">
+                <button class="btn btn-outline connect-platform" data-platform="google">
+                  Connect
+                </button>
+              </div>
+            </div>
+
+            <div class="platform-card" data-platform="twitter">
+              <div class="platform-icon">
+                <i class="fab fa-x-twitter"></i>
+              </div>
+              <div class="platform-info">
+                <h3>Twitter/X</h3>
+              </div>
+              <div class="platform-status">
+                <button class="btn btn-outline connect-platform" data-platform="twitter">
+                  Connect
+                </button>
+              </div>
+            </div>
+
+            <div class="platform-card" data-platform="tiktok">
+              <div class="platform-icon">
+                <i class="fab fa-tiktok"></i>
+              </div>
+              <div class="platform-info">
+                <h3>TikTok</h3>
+              </div>
+              <div class="platform-status">
+                <button class="btn btn-outline connect-platform" data-platform="tiktok">
+                  Connect
+                </button>
+              </div>
+            </div>
+
+            <div class="platform-card" data-platform="youtube">
+              <div class="platform-icon">
+                <i class="fab fa-youtube"></i>
+              </div>
+              <div class="platform-info">
+                <h3>YouTube</h3>
+              </div>
+              <div class="platform-status">
+                <button class="btn btn-outline connect-platform" data-platform="youtube">
+                  Connect
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="platforms-summary">
+          <div class="summary-card">
+            <h3>Platform Connections</h3>
+            <p id="connected-count">0 platforms connected</p>
+            <p class="summary-note">Connect at least one platform to enable campaign automation</p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="skip-platforms" class="btn btn-outline">Skip for now</button>
+          <button id="continue-to-strategy" class="btn btn-primary" disabled>
+            Generate Strategy
+            <i class="fas fa-magic"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategy Generation Loading Screen -->
+    <section id="page-strategy-generation" class="page">
+      <div class="container">
+        <div class="loading-container">
+          <div class="loading-header">
+            <h1>Generating Your Marketing Strategy</h1>
+            <p>Our AI is analyzing your business and creating a custom strategy...</p>
+          </div>
+
+          <div class="loading-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="strategyProgress"></div>
+            </div>
+            <div class="progress-text" id="strategyProgressText">
+              Initializing strategy generation...
+            </div>
+          </div>
+
+          <div class="loading-steps">
+            <div class="loading-step" id="step-context">
+              <div class="step-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="step-content">
+                <h4>Analyzing Business Context</h4>
+                <p>Understanding your business model and value proposition</p>
+              </div>
+            </div>
+
+            <div class="loading-step" id="step-industries">
+              <div class="step-icon">
+                <i class="fas fa-industry"></i>
+              </div>
+              <div class="step-content">
+                <h4>Identifying Target Industries</h4>
+                <p>Finding the best markets for your solution</p>
+              </div>
+            </div>
+
+            <div class="loading-step" id="step-personas">
+              <div class="step-icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <div class="step-content">
+                <h4>Creating Customer Profiles</h4>
+                <p>Developing detailed buyer personas and ICPs</p>
+              </div>
+            </div>
+
+            <div class="loading-step" id="step-accounts">
+              <div class="step-icon">
+                <i class="fas fa-crosshairs"></i>
+              </div>
+              <div class="step-content">
+                <h4>Researching Target Accounts</h4>
+                <p>Finding specific companies that match your ICP</p>
+              </div>
+            </div>
+
+            <div class="loading-step" id="step-messaging">
+              <div class="step-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="step-content">
+                <h4>Crafting Messaging Strategy</h4>
+                <p>Developing compelling messages and campaign content</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Strategy Review -->
+    <section id="page-strategy-review" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Review Your Marketing Strategy</h1>
+          <p>Review and customize the AI-generated strategy before launching campaigns</p>
+        </div>
+
+        <!-- Loading State (Initially Hidden) -->
+        <div id="strategy-loading" class="strategy-loading hidden">
+          <div class="beautiful-loading">
+            <div class="logo-container">
+              <img src="tinkerbell-frontend/tinkerbell-logo.png" alt="Tinkerbell" class="loading-logo" />
+              <div class="loading-sparkles">
+                <div class="sparkle sparkle-1"></div>
+                <div class="sparkle sparkle-2"></div>
+                <div class="sparkle sparkle-3"></div>
+              </div>
+            </div>
+            <div class="loading-content">
+              <h3>Crafting Your Magic Marketing Strategy</h3>
+              <div class="loading-steps">
+                <div class="loading-step" id="step-analysis">
+                  <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                  </div>
+                  <span>Analyzing your business context...</span>
+                </div>
+                <div class="loading-step" id="step-industries">
+                  <div class="step-icon">
+                    <i class="fas fa-industry"></i>
+                  </div>
+                  <span>Identifying target industries...</span>
+                </div>
+                <div class="loading-step" id="step-personas">
+                  <div class="step-icon">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                  <span>Creating customer profiles...</span>
+                </div>
+                <div class="loading-step" id="step-accounts">
+                  <div class="step-icon">
+                    <i class="fas fa-building"></i>
+                  </div>
+                  <span>Researching target accounts...</span>
+                </div>
+                <div class="loading-step" id="step-messaging">
+                  <div class="step-icon">
+                    <i class="fas fa-magic"></i>
+                  </div>
+                  <span>Crafting messaging strategy...</span>
+                </div>
+              </div>
+              <div class="strategy-progress-container">
+                <div class="strategy-progress-bar">
+                  <div id="strategyProgress" class="strategy-progress-fill"></div>
+                </div>
+                <div id="strategyProgressText" class="strategy-progress-text">Initializing AI analysis...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategy Content -->
+        <div id="strategy-tabs" class="strategy-tabs">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="industries">
+              <i class="fas fa-industry"></i>
+              Target Industries
+            </button>
+            <button class="tab-btn" data-tab="icps">
+              <i class="fas fa-user-tie"></i>
+              Customer Profiles
+            </button>
+            <button class="tab-btn" data-tab="accounts">
+              <i class="fas fa-building"></i>
+              Target Accounts
+            </button>
+          </div>
+
+          <!-- Industries Tab -->
+          <div id="tab-industries" class="tab-content active">
+            <div class="tab-header">
+              <h3>Recommended Target Industries</h3>
+              <div class="tab-actions">
+                <button class="btn btn-outline regenerate-all-btn">
+                  <i class="fas fa-refresh"></i>
+                  Regenerate All
+                </button>
+                <button class="btn btn-success custom-industry-btn">
+                  <i class="fas fa-plus"></i>
+                  Add Custom Industry
+                </button>
+              </div>
+            </div>
+            <div id="industries-grid" class="selection-grid">
+              <!-- Industries will be populated here -->
+            </div>
+            <div class="selection-info">
+              <p><i class="fas fa-info-circle"></i> Select 2-3 industries to focus your campaigns on</p>
+            </div>
+          </div>
+
+          <!-- ICPs Tab -->
+          <div id="tab-icps" class="tab-content">
+            <div class="tab-header">
+              <h3>Ideal Customer Profiles</h3>
+              <div class="tab-actions">
+                <button id="regenerate-icps" class="btn btn-outline">
+                  <i class="fas fa-refresh"></i>
+                  Regenerate ICPs
+                </button>
+                <button class="btn btn-success custom-icp-btn">
+                  <i class="fas fa-plus"></i>
+                  Add Custom ICP
+                </button>
+              </div>
+            </div>
+            <div id="icps-grid" class="selection-grid">
+              <!-- ICPs will be populated here -->
+            </div>
+            <div class="selection-info">
+              <p><i class="fas fa-info-circle"></i> Select the customer profiles that best match your target audience</p>
+            </div>
+          </div>
+
+          <!-- Target Accounts Tab -->
+          <div id="tab-accounts" class="tab-content">
+            <div class="tab-header">
+              <h3>Target Accounts</h3>
+              <div class="tab-actions">
+                <button id="load-more-accounts" class="btn btn-outline">
+                  <i class="fas fa-plus"></i>
+                  Load More Accounts
+                </button>
+              </div>
+            </div>
+            <div id="accounts-grid" class="accounts-grid">
+              <!-- Target accounts will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="approve-strategy" class="btn btn-primary" disabled>
+            Approve Strategy & Generate Campaigns
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Campaign Launchpad -->
+    <section id="page-campaign-launchpad" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Review Generated Posts</h1>
+          <p>Review, edit, and approve your AI-generated campaign posts for publication</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="assets-loading" class="loading-container">
+          <div class="beautiful-loading">
+            <div class="logo-container">
+              <img src="tinkerbell-frontend/tinkerbell-logo.png" alt="Tinkerbell" class="loading-logo" />
+              <div class="loading-sparkles">
+                <div class="sparkle sparkle-1"></div>
+                <div class="sparkle sparkle-2"></div>
+                <div class="sparkle sparkle-3"></div>
+              </div>
+            </div>
+            <div class="loading-content">
+              <h3>Creating Your Magical Content</h3>
+              <p>Generating personalized posts and stunning visuals</p>
+              <div class="progress-bar">
+                <div class="progress-fill" id="post-generation-progress"></div>
+              </div>
+              <div class="loading-message">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span id="post-loading-text">Analyzing target audiences...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Posts Review Carousel -->
+        <div id="campaign-posts" class="posts-review hidden">
+          <div class="posts-summary">
+            <div class="summary-stats">
+              <div class="stat-item">
+                <span class="stat-number" id="posts-count">0</span>
+                <span class="stat-label">Posts Generated</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="approved-count">0</span>
+                <span class="stat-label">Approved</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="platforms-count">0</span>
+                <span class="stat-label">Platforms</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="posts-carousel">
+            <button class="carousel-btn prev-btn" id="prev-post">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+                        
+            <div class="carousel-container">
+              <div class="posts-wrapper" id="posts-wrapper">
+                <!-- Posts will be populated here -->
+              </div>
+            </div>
+                        
+            <button class="carousel-btn next-btn" id="next-post">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="carousel-indicators" id="carousel-indicators">
+            <!-- Indicators will be populated here -->
+          </div>
+
+          <div class="posts-actions">
+            <div class="bulk-actions">
+              <button class="btn btn-outline" id="select-all-posts">
+                <i class="fas fa-check-square"></i>
+                Select All
+              </button>
+              <button class="btn btn-outline" id="regenerate-all-posts">
+                <i class="fas fa-refresh"></i>
+                Regenerate All
+              </button>
+              <button class="btn btn-outline" id="remove-hashtags">
+                <i class="fas fa-hashtag"></i>
+                Remove Hashtags
+              </button>
+              <button class="btn btn-outline" id="generate-more-posts">
+                <i class="fas fa-plus"></i>
+                Generate 3 More
+              </button>
+            </div>
+                        
+            <div class="main-actions">
+              <button class="btn btn-outline" id="save-draft">
+                <i class="fas fa-save"></i>
+                Save as Draft
+              </button>
+              <button class="btn btn-primary" id="launch-campaigns">
+                <i class="fas fa-rocket"></i>
+                Launch Approved Posts
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connected Platforms Section -->
+        <div id="platform-connections" class="platform-connections hidden">
+          <h3>Launch to Connected Platforms</h3>
+          <div class="connected-platforms-grid" id="connected-platforms-list">
+            <!-- Connected platforms will be shown here -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Custom Industry Modal -->
+  <div id="custom-industry-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Custom Industry</h3>
+        <button class="close-modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="custom-industry-name">Industry Name *</label>
+          <input type="text" id="custom-industry-name" placeholder="e.g., FinTech" required>
+        </div>
+        <div class="form-group">
+          <label for="custom-industry-reasoning">Why is this a good fit?</label>
+          <textarea id="custom-industry-reasoning" placeholder="Explain why this industry aligns with your goals..." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="custom-industry-advantage">Competitive Advantage</label>
+          <textarea id="custom-industry-advantage" placeholder="What advantage do you have in this industry?" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary cancel-custom-industry">Cancel</button>
+        <button class="btn-primary save-custom-industry">Add Industry</button>
       </div>
     </div>
   </div>
 
-  <!-- Page 4: Success -->
-  <div id="page-success" class="page">
-    <div class="container">
-      <div class="success-wrapper">
-        <div class="success-content">
-          <div class="success-icon">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-              <polyline points="22,4 12,14.01 9,11.01"/>
-            </svg>
-          </div>
-          <div class="success-header">
-            <h2>Campaign created successfully!</h2>
-            <p>Your marketing campaigns have been created and scheduled in Planable.</p>
-          </div>
-          <div class="success-details">
-            <div class="detail-card">
-              <h3>What happened:</h3>
-              <ul id="success-details">
-                <li>Workspace created in Planable</li>
-                <li><span id="posts-count">3</span> posts scheduled</li>
-                <li>Campaign ready to launch</li>
-              </ul>
-            </div>
-            <div class="workspace-card">
-              <h3>Access your campaigns</h3>
-              <p>View and manage all your posts in your new Planable workspace:</p>
-              <a id="workspace-link" href="#" target="_blank" class="workspace-button">
-                Open Planable workspace
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                  <polyline points="15,3 21,3 21,9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </a>
-            </div>
-            <div class="next-steps">
-              <h3>Next steps</h3>
-              <ol>
-                <li>Access your Planable workspace</li>
-                <li>Review and customize your posts</li>
-                <li>Approve and publish your campaigns</li>
-                <li>Monitor your results</li>
-              </ol>
-            </div>
-          </div>
-          <div class="form-actions">
-            <button onclick="location.reload()" class="btn btn-secondary">Create new campaign</button>
-          </div>
+  <!-- Custom ICP Modal -->
+  <div id="custom-icp-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Custom Customer Profile</h3>
+        <button class="close-modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="custom-icp-title">Decision Maker Title *</label>
+          <input type="text" id="custom-icp-title" placeholder="e.g., Chief Marketing Officer" required>
         </div>
+        <div class="form-group">
+          <label for="custom-icp-industry">Industry</label>
+          <select id="custom-icp-industry">
+            <option value="">Select an industry...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="custom-icp-pain-points">Pain Points (one per line)</label>
+          <textarea id="custom-icp-pain-points" placeholder="Limited marketing budget&#10;Need for scalable solutions" rows="3"></textarea>
+          <div class="form-help">Enter each pain point on a new line</div>
+        </div>
+        <div class="form-group">
+          <label for="custom-icp-value-props">Value Propositions (one per line)</label>
+          <textarea id="custom-icp-value-props" placeholder="Cost-effective automation&#10;Measurable ROI" rows="3"></textarea>
+          <div class="form-help">Enter each value proposition on a new line</div>
+        </div>
+        <div class="form-group">
+          <label for="custom-icp-demographics">Demographics</label>
+          <input type="text" id="custom-icp-demographics" placeholder="e.g., 50-200 employees, EU-based">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary cancel-custom-icp">Cancel</button>
+        <button class="btn-primary save-custom-icp">Add Profile</button>
       </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
-<!-- Copied from tinkerbell-frontend/app.html for GitHub Pages -->
-<!-- Minor change: use tinkerbell-logo.svg for the header logo to ensure availability -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinkerbell - Autonomous Marketing Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="app-styles.css">
-</head>
-<body>
-    <header class="app-header">
-        <div class="container">
-            <div class="brand">
-                <img src="tinkerbell-logo.svg" alt="Tinkerbell" height="32">
-                <span class="brand-name">Tinkerbell</span>
-            </div>
-            <div class="progress-indicator">
-                <div class="step active" data-step="1">
-                    <div class="step-number">1</div>
-                    <span class="step-label">Business Context</span>
-                </div>
-                <div class="step" data-step="2">
-                    <div class="step-number">2</div>
-                    <span class="step-label">Goal Selection</span>
-                </div>
-                <div class="step" data-step="3">
-                    <div class="step-number">3</div>
-                    <span class="step-label">Meta Pixel</span>
-                </div>
-                <div class="step" data-step="4">
-                    <div class="step-number">4</div>
-                    <span class="step-label">Strategy Review</span>
-                </div>
-                <div class="step" data-step="5">
-                    <div class="step-number">5</div>
-                    <span class="step-label">Campaign Launch</span>
-                </div>
-            </div>
+  <!-- Success Modal -->
+  <div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🎉 Campaigns Launched Successfully!</h3>
+      </div>
+      <div class="modal-body">
+        <p>Your marketing campaigns have been launched across all selected platforms. You'll receive updates and analytics in your dashboard.</p>
+        <div class="launch-summary">
+          <h4>Launch Summary:</h4>
+          <ul id="launch-summary-list">
+            <!-- Launch details will be populated here -->
+          </ul>
         </div>
-    </header>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="close-success-modal">Go to Dashboard</button>
+      </div>
+    </div>
+  </div>
 
-    <main class="app-main">
-        <section id="page-business-context" class="page active">
-            <div class="container">
-                <div class="page-header">
-                    <h1>Tell us about your business</h1>
-                    <p>Help us understand your business context to generate the perfect marketing strategy</p>
-                </div>
-
-                <form id="business-context-form" class="business-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="businessName">Business Name *</nlabel>
-                            <input type="text" id="businessName" name="businessName" required placeholder="e.g., TechFlow Solutions">
-                        </div>
-                        <div class="form-group">
-                            <label for="websiteUrl">Website URL</label>
-                            <input type="url" id="websiteUrl" name="websiteUrl" placeholder="https://www.example.com">
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="productDescription">Product/Service Description *</label>
-                            <textarea id="productDescription" name="productDescription" required rows="3" placeholder="Describe what your business does, your main products or services..."></textarea>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="painPoints">Customer Pain Points *</label>
-                            <textarea id="painPoints" name="painPoints" required rows="3" placeholder="What problems do your customers face? What challenges do you solve?"></textarea>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="valueProposition">Value Proposition *</label>
-                            <textarea id="valueProposition" name="valueProposition" required rows="3" placeholder="What makes you unique? Why should customers choose you?"></textarea>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="marketSignals">Market Signals & Traction</label>
-                            <textarea id="marketSignals" name="marketSignals" rows="2" placeholder="Any metrics, customer feedback, or market validation you have..."></textarea>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Pitch Deck (Optional)</label>
-                            <div class="file-upload-area" id="pitchDeckUpload">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>Click to upload your pitch deck (PDF)</span>
-                                <small>This helps us understand your business better</small>
-                            </div>
-                            <input type="file" id="pitchDeck" name="pitchDeck" accept=".pdf" style="display:none;">
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Continue to Goal Selection <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </form>
-            </div>
-        </section>
-        <!-- Other steps exist in source; kept minimal for static deploy -->
-    </main>
-
-    <script src="app.js"></script>
+  <script src="tinkerbell-frontend/app.js"></script>
 </body>
 </html>
