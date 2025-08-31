@@ -1,0 +1,13 @@
+{
+    "name": "facebook-posting-test",
+    "version": "1.0.0",
+    "description": "Simple Facebook posting test via Planable API",
+    "main": "test-facebook-post.js",
+    "scripts": {
+        "test": "node test-facebook-post.js"
+    },
+    "dependencies": {
+        "axios": "^1.6.0",
+        "dotenv": "^16.0.0"
+    }
+}
